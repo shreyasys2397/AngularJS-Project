@@ -303,49 +303,49 @@ app.controller("vehicleController", function($scope, $http) {
     $scope.success = "";
     $scope.searchText = "";
 
-    // --------------------------------
-    // 1. LOAD VEHICLES FROM JSON SERVER
-    // --------------------------------
+    
+$scope.loadVehicles = function() {
 
-    $scope.loadVehicles = function() {
+    $scope.loading = true;
+    $scope.error = "";
 
-        $scope.loading = true;
-        $scope.error = "";
+    // Load initial vehicle records from GitHub Pages
+    $http.get("./vehicles.json")
 
-        $http.get(API_URL)
+    .then(function(response) {
 
-        .then(function(response) {
+        console.log("JSON Data Loaded:", response.data);
 
-            console.log("JSON Data Loaded:", response.data);
+        // Your JSON file stores records inside "vehicles"
+        if (response.data &&
+            Array.isArray(response.data.vehicles)) {
 
-            // JSON Server returns an array directly
-            if (Array.isArray(response.data)) {
+            $scope.vehicles = response.data.vehicles;
 
-                $scope.vehicles = response.data;
+        } else {
 
-            } else {
+            $scope.error = "Invalid JSON format!";
 
-                $scope.error = "Invalid JSON format!";
+        }
 
-            }
+    })
 
-        })
+    .catch(function(error) {
 
-        .catch(function(error) {
+        console.error("Loading Error:", error);
 
-            console.error("Loading Error:", error);
+        $scope.error = "Unable to load vehicles.json";
 
-            $scope.error =
-                "Unable to load vehicle data. Check JSON Server.";
+    })
 
-        })
+    .finally(function() {
 
-        .finally(function() {
+        $scope.loading = false;
 
-            $scope.loading = false;
+    });
 
-        });
-    };
+};
+
 
 
     // Load records when application starts
