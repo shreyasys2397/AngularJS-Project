@@ -1,0 +1,28 @@
+{
+  "vehicles": [
+    {
+      "id": "2",
+      "number": "KA09CD5678",
+      "name": "Honda Activa",
+      "type": "Bike",
+      "owner": "Arun",
+      "model": 2023
+    },
+    {
+      "id": "3",
+      "number": "KA09EF9012",
+      "name": "Volvo",
+      "type": "Bus",
+      "owner": "Suresh",
+      "model": 2021
+    },
+    {
+      "number": "KA11C0950",
+      "name": "Bharath Benz",
+      "type": "Bus",
+      "owner": "MIT Mysore",
+      "model": 2021,
+      "id": "fE_CaLY"
+    }
+  ]
+}
